@@ -1,4 +1,14 @@
-var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=Orlando,Florida&appid=596ff6a8b9059e68a3a5b2f8821c0145";
+//Globals
+const city = $(".city");
+const wind = $(".wind");
+const temp = $(".temp");
+const humidity = $(".humidity");
+const searchHistory = [];           //users searches are stored here
+
+$(document).ready(function(){
+
+const queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=596ff6a8b9059e68a3a5b2f8821c0145";
+
 
 $.ajax({
     url: queryURL,
@@ -12,6 +22,9 @@ $.ajax({
     $(".wind").text("Wind Speed " + response.wind.speed);
     $(".humidity").text("humidity: " + response.main.humidity);
 
-    var tempF = (response.main.temp - 273.15) * 1.80 + 32;
+    //celcius to fahrenheit
+    const tempF = (response.main.temp - 273.15) * 1.80 + 32;
+
+});
 
 });
