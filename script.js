@@ -28,13 +28,13 @@ $(document).ready(function () {
             url: queryURL,
             method: "GET"
         }).then(function (response) {
-            let lastCityInput = JSON.parse(localStorage.getItem("city"));
+            let lastCityInput = JSON.parse(localStorage.getItem("lastCity"));
             if (lastCityInput) {
                 lastCityInput.push(response.name)
-                localStorage.setItem("city", JSON.stringify(lastCityInput));
+                localStorage.setItem("lastCity", JSON.stringify(lastCityInput));
             } else {
                 searchHistory.push(response.name);
-                localStorage.setItem("city", JSON.stringify(searchHistory));
+                localStorage.setItem("lastCity", JSON.stringify(searchHistory));
             }
 
             // Log the data in HTML
@@ -60,13 +60,13 @@ $(document).ready(function () {
     }
 
     $(document).on("click", ".cityBtn", function () {
-        JSON.parse(localStorage.getItem("city"));
+        JSON.parse(localStorage.getItem("lastCity"));
         let cityName = $(this).text();
         searchInput(cityName);
     });
 
     function usersSearches() {
-        const usrList = JSON.parse(localStorage.getItem("city"));
+        const usrList = JSON.parse(localStorage.getItem("lastCity"));
         $("#searchHistory").empty();
         if (usrList) {
             for (let i = 0; i < usrList.length; i++) {
