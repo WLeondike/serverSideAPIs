@@ -18,7 +18,7 @@ As the user searches cities, those resultes will generate under the search bar. 
 - HTML file
 - CSS file
 - Bootstrap
-- jQurey
+- jQuery
 - moment.js
 - JavaScript file
 
