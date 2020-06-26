@@ -14,7 +14,7 @@ Once the User inputs a city into the search function, they will receive informat
 
 As the user searches cities, those resultes will generate under the search bar. I have included a click function that will allow the user to click the result that will swiftly bring back the current conditions of that city, with the five-day forecast at the click of a button. All stored and saved by local storage. 
 
-## Resources 
+## Framework
 - HTML file
 - CSS file
 - Bootstrap

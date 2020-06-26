@@ -8,7 +8,7 @@ let temp = $(".temp");
 let searchHistory = [];
 
 $(document).ready(function () {
-    
+
     usersSearches();
 
     //click event for search
@@ -28,7 +28,7 @@ $(document).ready(function () {
         //ajax call for local weather
         $.ajax({
             url: queryURL,
-            type: "GET"
+            method: "GET"
         }).then(function (response) {
             let lastCityInput = JSON.parse(localStorage.getItem("lastCity"));
             if (lastCityInput) {
@@ -43,7 +43,7 @@ $(document).ready(function () {
             let todaysDate = moment().format("MM/DD/YYYY");
             const indexIcon = response.weather[0].icon;
             const iconurl = "https://openweathermap.org/img/w/" + indexIcon + ".png";
-            
+
             //temp converted from celcius to fahrenheit + text display
             let weatherImg = $("<img>").attr("src", iconurl);
             let tempF = (response.main.temp - 273.15) * 1.80 + 32;
@@ -53,7 +53,7 @@ $(document).ready(function () {
             //rest of the data needed for the page
             let humidityData = $("<p>").text("Humidity: " + response.main.humidity + "%").addClass("lead");
             let windData = $("<p>").text("Wind Speed: " + response.wind.speed + " MPH").addClass("lead");
-            
+
             //append the elements together
             inputCity.append(" ", todaysDate, weatherImg, cityFahrenheit, humidityData, windData);
             $("container").append(inputCity);
@@ -64,10 +64,10 @@ $(document).ready(function () {
             const queryUVURL = "https://api.openweathermap.org/data/2.5/uvi?appid=596ff6a8b9059e68a3a5b2f8821c0145&lat=" + lat + "&lon=" + lon;
             $.ajax({
                 url: queryUVURL,
-                type: "GET"
+                method: "GET"
             }).then(function (responseUV) {
-                let currentUV = $("<div>").addClass('lead uv-index').text("UV Index: ");
-                let uvValue = $("<span class='badge id='current-uv-level'>").text(responseUV.value);
+                let currentUV = $("<div>").addClass('lead UVIndex').text("UV Index: ");
+                let uvValue = $("<span class='badge id='current-UVLevel'>").text(responseUV.value);
                 currentUV.append(uvValue);
                 if (responseUV.value >= 0 && responseUV.value < 3) {
                     $(uvValue).addClass("badge-success");
@@ -84,16 +84,15 @@ $(document).ready(function () {
                 usersSearches();
             })
 
-            //five day forecast cards + city + 
+            //five day forecast cards
             const queryFiveURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + lat + "&lon=" + lon + "&units=imperial" + "&appid=596ff6a8b9059e68a3a5b2f8821c0145";
 
             for (let i = 1; i < 6; i++) {
                 $.ajax({
-                    type: "GET",
-                    url: queryFiveURL
+                    url: queryFiveURL,
+                    method: "GET"
                 }).then(function (fiveDayResponse) {
                     let cardbodyElem = $("<div>").addClass("card-body");
-
                     let fiveDayCard = $("<div>").addClass(".cardbody");
                     let fiveDate = $("<h5>").text(moment.unix(fiveDayResponse.daily[i].dt).format("MM/DD/YYYY"));
                     fiveDayCard.addClass("headline");
@@ -121,10 +120,9 @@ $(document).ready(function () {
                 })
             }
             $("#search").val("");
-
         })
-
     }
+
     ///local storage click function
     $(document).on("click", ".city-btn", function () {
         event.preventDefault();
@@ -139,14 +137,11 @@ $(document).ready(function () {
         $("#search-list").empty();
         if (searchList) {
             for (i = 0; i < searchList.length; i++) {
-                let listBtn = $("<button>").addClass("btn btn-secondary city-btn").attr('id', 'inputCity' + (i + 1)).text(searchList[i]);
+                let listBtn = $("<button>").addClass("btn btn-secondary city-btn").attr('id', 'inputCity_' + (i + 1)).text(searchList[i]);
                 let listElem = $("<li>").attr('class', 'list-group-item');
                 listElem.append(listBtn);
                 $("#search-list").append(listElem);
             }
-
         }
-
     }
-
 })
