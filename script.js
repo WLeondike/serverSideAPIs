@@ -98,7 +98,7 @@ $(document).ready(function () {
       });
 
       //five day forecast cards
-      const queryFiveURL = `https://api.openweathermap.org/data/2.5/forecast?q=${lat}&lon=${lon}&units=imperial&appid=596ff6a8b9059e68a3a5b2f8821c0145`;
+      const queryFiveURL = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=imperial&appid=596ff6a8b9059e68a3a5b2f8821c0145`;
 
       for (let i = 1; i < 6; i++) {
         $.ajax({

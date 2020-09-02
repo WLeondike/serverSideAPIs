@@ -22,6 +22,6 @@ As the user searches cities, those resultes will generate under the search bar. 
 - moment.js
 - JavaScript file
 
-<img src="./06-server-side-apis-homework-demo.png" alt = "Weather Dashboard" width=600>
+<img src="./assets/images/06-server-side-apis-homework-demo.png" alt = "Weather Dashboard" width=600>
 
 Link to site: https://wleondike.github.io/serverSideAPIs/
